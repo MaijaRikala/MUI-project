@@ -119,8 +119,7 @@ public class BoardManager : MonoBehaviour
         if (tile.isBomb)
         {
             Debug.Log("GAME OVER");
-            // Example integration point: notify GameManager of loss:
-            // GameManager.Instance.UpdateGameState(GameManager.GameState.Lose);
+            GameManager.Instance.LoseGame();
         }
         else if (tile.adjacentBombs == 0)
         {
@@ -130,8 +129,40 @@ public class BoardManager : MonoBehaviour
             // to reveal connected empty areas and their bordering numbered tiles.
             RevealAdjacentEmptyTiles(x, y);
         }
+        else if (CountUnrevealedTiles() == 0)
+        {
+            // All tiles non-bomb have been revealed -> game win
+            GameManager.Instance.WinGame();
+        }
+    }
 
-        // TODO: Check win condition (e.g., all non-bomb tiles revealed)
+    int CountUnrevealedTiles()
+    {
+        int unrevealedTiles = 0;
+        
+        // Loop through board to find all unrevealed non-bomb tiles
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                if (tiles[x, y].isBomb)
+                {
+                    // If there is a bomb, ignore
+                    continue;
+                }
+                else if (tiles[x, y].isRevealed)
+                {
+                    // If already revealed, ignore
+                    continue;
+                }
+                else
+                {
+                    unrevealedTiles++;
+                }
+            }
+        }
+
+        return unrevealedTiles;
     }
 
     // Reveal immediate neighboring tiles that are not bombs and not already revealed.
