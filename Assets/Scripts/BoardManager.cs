@@ -10,11 +10,11 @@ public class BoardManager : MonoBehaviour
     public GameObject tilePrefab;
 
     // Board dimensions (columns x rows)
-    public int width = 8;
-    public int height = 8;
+    public int width = 10;
+    public int height = 10;
 
     // Number of bombs to place on the board
-    public int bombCount = 10;
+    public int bombCount = 15;
 
     // Internal 2D array holding Tile references for quick access
     private Tile[,] tiles;
