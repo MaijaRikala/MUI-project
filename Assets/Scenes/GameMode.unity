@@ -867,6 +867,8 @@ MonoBehaviour:
   pausePanel: {fileID: 1605857614}
   optionsPanel: {fileID: 0}
   mainMenuPanel: {fileID: 0}
+  victoryPanel: {fileID: 1102516155}
+  losePanel: {fileID: 857380804}
 --- !u!4 &591597624
 Transform:
   m_ObjectHideFlags: 0
