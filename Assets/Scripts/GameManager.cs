@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     [Header("UI Panels")]
     public GameObject pausePanel;
+    public GameObject optionsPanel;
+    public GameObject mainMenuPanel;
     public GameObject victoryPanel;
     public GameObject losePanel;
 
@@ -32,7 +34,7 @@ public class GameManager : MonoBehaviour
     // --- Load Game scene ---
     public void StartGame()
     {
-        Time.timeScale = 1f; // Make sure time is normal
+        Time.timeScale = 1f;
         SceneManager.LoadScene("GameMode");
     }
 
@@ -47,14 +49,38 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0f;
-        pausePanel.SetActive(true);
+
+        if (pausePanel != null)
+            pausePanel.SetActive(true);
     }
 
     // --- Resume the game ---
     public void ResumeGame()
     {
         Time.timeScale = 1f;
-        pausePanel.SetActive(false);
+
+        if (pausePanel != null)
+            pausePanel.SetActive(false);
+    }
+
+    // --- Open Options panel ---
+    public void OpenOptions()
+    {
+        if (mainMenuPanel != null)
+            mainMenuPanel.SetActive(false);
+
+        if (optionsPanel != null)
+            optionsPanel.SetActive(true);
+    }
+
+    // --- Close Options panel ---
+    public void CloseOptions()
+    {
+        if (optionsPanel != null)
+            optionsPanel.SetActive(false);
+
+        if (mainMenuPanel != null)
+            mainMenuPanel.SetActive(true);
     }
 
     // --- Restart the current scene ---
@@ -85,8 +111,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        // Press ESC to pause
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // ESC pauses or resumes the game
+        if (Input.GetKeyDown(KeyCode.Escape) && pausePanel != null)
         {
             if (pausePanel.activeSelf)
                 ResumeGame();
