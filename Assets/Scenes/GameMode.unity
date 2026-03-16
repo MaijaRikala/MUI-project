@@ -1305,8 +1305,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoardManager
   tilePrefab: {fileID: 4511174038449695677, guid: 58d23c96c06149548a778b5c1b962e77, type: 3}
-  width: 8
-  height: 8
+  width: 10
+  height: 10
   bombCount: 10
 --- !u!114 &791183838
 MonoBehaviour:
@@ -1331,7 +1331,7 @@ MonoBehaviour:
   m_CellSize: {x: 140, y: 140}
   m_Spacing: {x: 5, y: 5}
   m_Constraint: 1
-  m_ConstraintCount: 8
+  m_ConstraintCount: 10
 --- !u!114 &791183839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3317,6 +3317,7 @@ GameObject:
   - component: {fileID: 1976501360}
   - component: {fileID: 1976501363}
   - component: {fileID: 1976501362}
+  - component: {fileID: 1976501364}
   m_Layer: 5
   m_Name: BoardPanel
   m_TagString: Untagged
@@ -3422,6 +3423,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1976501364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976501358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10dfb3ee0ffbe264ea95aefeb76ebddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FocusObject
+  eventSystem: {fileID: 315676714}
+  firstSelected: {fileID: 0}
+  lastSelected: {fileID: 0}
 --- !u!1 &1984089986
 GameObject:
   m_ObjectHideFlags: 0
