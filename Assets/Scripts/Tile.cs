@@ -14,6 +14,7 @@ public class Tile : MonoBehaviour
     // --- Tile state ---
     public bool isBomb = false;
     public bool isRevealed = false;
+    public bool isNumbered = false;
     public int adjacentBombs = 0;
 
     // --- UI references ---
@@ -59,6 +60,7 @@ public class Tile : MonoBehaviour
         {
             img.color = revealedColor;
             text.text = adjacentBombs > 0 ? adjacentBombs.ToString() : "";
+            isNumbered = adjacentBombs > 0 ? true : false;
 
             // Number colors
             switch (adjacentBombs)
