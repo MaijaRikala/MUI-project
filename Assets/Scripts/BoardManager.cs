@@ -183,7 +183,13 @@ public class BoardManager : MonoBehaviour
 
                     // Only reveal tiles that haven't been revealed and are not bombs.
                     if (!t.isRevealed && !t.isBomb)
+                    {
                         t.Reveal();
+                        if (!t.isNumbered)
+                        {
+                            RevealAdjacentEmptyTiles(checkX, checkY);
+                        }
+                    }
                 }
             }
         }
