@@ -99,12 +99,27 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
+        AudioManager audioManager = FindFirstObjectByType<AudioManager>();
+
+        if (audioManager != null)
+        {
+            audioManager.PlayWinSound();
+        }
+
+
         Time.timeScale = 0f;
         victoryPanel.SetActive(true);
     }
 
     public void LoseGame()
     {
+        AudioManager audioManager = FindFirstObjectByType<AudioManager>();
+
+        if (audioManager != null)
+        {
+            audioManager.PlayLoseSound();
+        }
+
         Time.timeScale = 0f;
         losePanel.SetActive(true);
     }
