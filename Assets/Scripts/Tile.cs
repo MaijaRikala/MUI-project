@@ -43,8 +43,8 @@ public class Tile : MonoBehaviour
         button.colors = cb;
     }
 
-    // Reveal tile
-    public void Reveal()
+    // Reveal tile (UPDATED)
+    public void Reveal(bool playSound = true)
     {
         if (isRevealed) return;
 
@@ -54,13 +54,19 @@ public class Tile : MonoBehaviour
         if (isBomb)
         {
             img.color = bombColor;
-            text.text = ""; // Bomb tiles remain empty
+            text.text = "";
         }
         else
         {
+            // Play sound ONLY once (first tile)
+            if (playSound)
+            {
+                AudioManager.instance.PlaySound(AudioManager.instance.revealSound);
+            }
+
             img.color = revealedColor;
             text.text = adjacentBombs > 0 ? adjacentBombs.ToString() : "";
-            isNumbered = adjacentBombs > 0 ? true : false;
+            isNumbered = adjacentBombs > 0;
 
             // Number colors
             switch (adjacentBombs)
@@ -75,7 +81,22 @@ public class Tile : MonoBehaviour
                 case 8: text.color = new Color32(107, 114, 128, 255); break;
                 default: text.color = Color.black; break;
             }
+
+            // If empty tile → reveal neighbors WITHOUT sound
+            if (adjacentBombs == 0)
+            {
+                foreach (Tile neighbor in FindNeighbors()) // or your own neighbor list
+                {
+                    neighbor.Reveal(false); // ❌ no sound spam
+                }
+            }
         }
+    }
+
+    // Replace this with your actual neighbor logic if you have one
+    private Tile[] FindNeighbors()
+    {
+        return new Tile[0];
     }
 
     // Reset tile (useful when restarting game)
