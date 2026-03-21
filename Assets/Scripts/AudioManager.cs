@@ -16,16 +16,14 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip winSound;
     public AudioClip loseSound;
+    public AudioClip revealSound;
 
-    private static bool musicStarted = false; // 🔥 KEY FIX
+    private bool revealPlayedThisFrame = false;
 
     void Awake()
     {
-        Debug.Log("AudioManager Awake");
-
         if (instance != null)
         {
-            Debug.Log("Duplicate destroyed");
             Destroy(gameObject);
             return;
         }
@@ -33,8 +31,6 @@ public class AudioManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // Optional: auto-assign if needed
-        // musicSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -42,21 +38,17 @@ public class AudioManager : MonoBehaviour
         float savedMusic = PlayerPrefs.GetFloat("MusicVolume", 1f);
         float savedSfx = PlayerPrefs.GetFloat("SFXVolume", 1f);
 
-        if (musicSlider != null) musicSlider.value = savedMusic;
-        if (sfxSlider != null) sfxSlider.value = savedSfx;
+        if (musicSlider != null)
+            musicSlider.value = savedMusic;
+
+        if (sfxSlider != null)
+            sfxSlider.value = savedSfx;
 
         SetMusicVolume(savedMusic);
         SetSFXVolume(savedSfx);
 
-        // 🔥 START MUSIC ONLY ONCE
-        if (!musicStarted)
-        {
-            if (!musicSource.isPlaying)
-            {
-                musicSource.Play();
-                musicStarted = true;
-            }
-        }
+        StartMusic();
+
     }
 
     public void SetMusicVolume(float volume)
@@ -85,13 +77,49 @@ public class AudioManager : MonoBehaviour
             sfxSource.PlayOneShot(loseSound);
     }
 
+    public void PlaySound(AudioClip clip)
+    {
+        if (clip == null) return;
+
+        // Prevent multiple reveal sounds in same frame
+        if (clip == revealSound)
+        {
+            if (revealPlayedThisFrame) return;
+
+            revealPlayedThisFrame = true;
+        }
+
+        sfxSource.PlayOneShot(clip);
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        revealPlayedThisFrame = false;
+    }
+
+    public void RegisterSliders(Slider music, Slider sfx)
+    {
+        musicSlider = music;
+        sfxSlider = sfx;
+
+        if (musicSlider != null)
         {
-            sfxSource.Stop();
-            Debug.Log("SFX manually stopped");
+            musicSlider.onValueChanged.RemoveAllListeners(); // important
+            musicSlider.onValueChanged.AddListener(SetMusicVolume);
+        }
+
+        if (sfxSlider != null)
+        {
+            sfxSlider.onValueChanged.RemoveAllListeners(); // important
+            sfxSlider.onValueChanged.AddListener(SetSFXVolume);
         }
     }
+
+    public void StartMusic()
+{
+    if (musicSource != null && !musicSource.isPlaying)
+    {
+        musicSource.Play();
+    }
+}
 }

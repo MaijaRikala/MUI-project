@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -113,14 +114,22 @@ public class GameManager : MonoBehaviour
 
     public void LoseGame()
     {
+        StartCoroutine(LoseGameDelayed());
+    }
+
+    private IEnumerator LoseGameDelayed()
+    {
         AudioManager audioManager = FindFirstObjectByType<AudioManager>();
 
         if (audioManager != null)
         {
-            audioManager.PlayLoseSound();
+            audioManager.PlayLoseSound(); // play immediately
         }
 
-        Time.timeScale = 0f;
+        // wait BEFORE freezing time
+        yield return new WaitForSeconds(0.7f);
+
+        Time.timeScale = 0f; // freeze AFTER delay
         losePanel.SetActive(true);
     }
 
