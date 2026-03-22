@@ -719,7 +719,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1024678446}
   - {fileID: 560543717}
   - {fileID: 1782802352}
   - {fileID: 1655728367}
@@ -1401,6 +1400,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1024678446}
   - {fileID: 438777952}
   - {fileID: 1189732}
   m_Father: {fileID: 0}
@@ -2015,11 +2015,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 438777952}
+  m_Father: {fileID: 845032615}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.56, y: 65.08588}
+  m_AnchoredPosition: {x: -3.56, y: -15.914124}
   m_SizeDelta: {x: 2534.9224, y: 1648.4409}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1024678447
@@ -2770,7 +2770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.759434, g: 0.83458275, b: 1, a: 0.392}
+  m_Color: {r: 0.759434, g: 0.83458275, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
