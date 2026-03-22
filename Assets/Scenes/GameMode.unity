@@ -3217,7 +3217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FocusObject
   eventSystem: {fileID: 315676714}
   firstSelected: {fileID: 1006407343}
-  lastSelected: {fileID: 0}
+  lastSelected: {fileID: 78213595}
 --- !u!114 &1260493691
 MonoBehaviour:
   m_ObjectHideFlags: 0
