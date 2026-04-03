@@ -22,5 +22,12 @@ Maija Rikala (2406863)
 
 Ruusu Aavikko (2508242)
 - game logic
+      - core minesweeper mechanics
 - graphics
+      - selecting and adding visual assests from Unity Asses Store
+      - consistant visual style across the game
 - UI layout and functionality
+    - menu layouts (placement of elements and overall structure)
+    - visual style for menus and UI
+- audio
+  - background music and sound effects
