@@ -33,7 +33,7 @@ We also added audio to aid the player. When the player clicks on a tile, a sound
 
 ## Contributors:
 
-Maija Rikala (2406863)
+MaijaRikala
 - game logic
     - reveal empty tiles (until a mine is encountered), when player clicks on a tile
     - enable correct panel on win and game over
@@ -47,7 +47,7 @@ Maija Rikala (2406863)
  - graphics
      - background images
 
-Ruusu Aavikko (2508242)
+Rosel1a
 - game logic
     - rest of the core minesweeper mechanics (initialise board, show number of mines in adjacent tiles etc.)
 - graphics
